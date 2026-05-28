@@ -46,7 +46,7 @@ const projects = [
     problem: "Off-the-shelf software never fits perfectly. You end up paying for features you don't need and working around the ones you do. Your team wastes hours on manual data entry and repetitive tasks that could be automated.",
     highlights: [
       "Built around YOUR specific business processes, not a one-size-fits-all template",
-      "Automates manual tasks like data entry, invoicing, and reporting so your team focuses on更重要 work",
+      "Automates manual tasks like data entry, invoicing, and reporting so your team focuses on important work",
       "Gives you a live dashboard showing exactly what's happening in your business at any moment",
       "Secure login system with different access levels — staff see only what they need to",
       "Easily grows with you — add new features, users, or locations as your business expands"
