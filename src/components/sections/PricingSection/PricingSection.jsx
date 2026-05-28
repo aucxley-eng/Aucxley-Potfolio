@@ -23,6 +23,14 @@ const plans = [
     features: ['Full e-commerce store (responsive — works on any device, unlike basic static shops)', 'M-Pesa & card payments', 'Inventory management', 'Order tracking dashboard', '6 months support'],
     popular: false,
   },
+  {
+    name: 'Enterprise',
+    price: 'Custom',
+    description: 'For multi-location businesses needing a complete system.',
+    features: ['Multi-branch & employee management', 'Fleet & logistics tracking', 'Inventory & supply chain', 'Custom admin dashboard & reports', 'Priority support & SLA'],
+    popular: false,
+    custom: true,
+  },
 ];
 
 const container = {
@@ -71,9 +79,15 @@ export default function PricingSection() {
               {p.popular && <span className={styles.badge}>Most Popular</span>}
               <h3 className={styles.planName}>{p.name}</h3>
               <div className={styles.price}>
-                <span className={styles.currency}>from </span>
-                <span className={styles.amount}>{p.price}</span>
-                <span className={styles.currency}> KES</span>
+                {p.custom ? (
+                  <span className={styles.customPrice}>{p.price}</span>
+                ) : (
+                  <>
+                    <span className={styles.currency}>from </span>
+                    <span className={styles.amount}>{p.price}</span>
+                    <span className={styles.currency}> KES</span>
+                  </>
+                )}
               </div>
               <p className={styles.planDesc}>{p.description}</p>
               <ul className={styles.features}>
@@ -86,8 +100,8 @@ export default function PricingSection() {
                   </li>
                 ))}
               </ul>
-              <a href="https://wa.me/254796606363" target="_blank" rel="noopener noreferrer" className={styles.cta}>
-                Get Started
+              <a href="https://wa.me/254796606363" target="_blank" rel="noopener noreferrer" className={`${styles.cta} ${p.custom ? styles.ctaCustom : ''}`}>
+                {p.custom ? 'Let\'s Talk' : 'Get Started'}
               </a>
             </motion.div>
           ))}

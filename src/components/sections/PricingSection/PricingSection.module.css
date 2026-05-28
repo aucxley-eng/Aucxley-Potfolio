@@ -14,14 +14,13 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
   align-items: start;
 }
 
 .card {
   background: var(--glass-bg);
-  backdrop-filter: blur(8px);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   padding: 2.5rem 2rem;
@@ -82,6 +81,13 @@
   letter-spacing: -0.03em;
 }
 
+.customPrice {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+}
+
 .planDesc {
   font-size: 0.875rem;
   color: var(--text-secondary);
@@ -129,9 +135,24 @@
   box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4);
 }
 
-@media (max-width: 900px) {
+.ctaCustom {
+  background: linear-gradient(135deg, #475569, #1e293b);
+  box-shadow: 0 4px 20px rgba(71, 85, 105, 0.3);
+}
+
+.ctaCustom:hover {
+  box-shadow: 0 8px 30px rgba(71, 85, 105, 0.45);
+}
+
+@media (max-width: 1100px) {
   .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
     max-width: 400px;
     margin: 0 auto;
   }

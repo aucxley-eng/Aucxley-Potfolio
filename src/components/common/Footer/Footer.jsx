@@ -9,7 +9,7 @@ const footerLinks = [
   { label: 'Contact', href: '#contact' },
 ];
 
-export default function Footer() {
+export default function Footer({ onNavigate }) {
   return (
     <footer className={styles.footer}>
       <div className="container">
@@ -37,6 +37,22 @@ export default function Footer() {
           </div>
 
           <div className={styles.links}>
+            <h4 className={styles.linkTitle}>Legal</h4>
+            <ul className={styles.linkList}>
+              <li>
+                <a href="/privacy" className={styles.link} onClick={(e) => { e.preventDefault(); onNavigate('privacy'); }}>
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="/terms" className={styles.link} onClick={(e) => { e.preventDefault(); onNavigate('terms'); }}>
+                  Terms of Service
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div className={styles.links}>
             <h4 className={styles.linkTitle}>Connect</h4>
             <div className={styles.social}>
               <a href="https://wa.me/254796606363" target="_blank" rel="noopener noreferrer" className={styles.socialLink} aria-label="WhatsApp">
@@ -54,7 +70,7 @@ export default function Footer() {
         </div>
 
         <div className={styles.bottom}>
-          <p>&copy; {new Date().getFullYear()} Aucxley Ben. Built with passion.</p>
+          <p>&copy; {new Date().getFullYear()} Aucxley Solutions. All rights reserved.</p>
         </div>
       </div>
     </footer>

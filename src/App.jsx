@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import { AnimatePresence } from 'framer-motion';
 import Header from './components/common/Header/Header';
 import Hero from './components/projects/Hero/Hero';
 import AboutSection from './components/sections/AboutSection/AboutSection';
@@ -10,13 +9,14 @@ import SkillsSection from './components/sections/SkillsSection/SkillsSection';
 import ProjectsSection from './components/projects/ProjectsSection/ProjectsSection';
 import ContactSection from './components/sections/ContactSection/ContactSection';
 import Footer from './components/common/Footer/Footer';
+import LegalPage from './components/pages/LegalPage/LegalPage';
 import { getProjects } from './data/projects';
 import { useDarkMode } from './hooks/useDarkMode';
 import './styles/globals.css';
 
 function App() {
   const { isDark, toggle: toggleDark } = useDarkMode();
-
+  const [page, setPage] = useState('home');
   const [searchTerm, setSearchTerm] = useState('');
   const [filterTag, setFilterTag] = useState('');
 
@@ -44,6 +44,17 @@ function App() {
     return Array.from(tags);
   }, [projects]);
 
+  if (page === 'privacy' || page === 'terms') {
+    return (
+      <div className="app">
+        <div className="noise-overlay" />
+        <Header isDark={isDark} onToggleDark={toggleDark} />
+        <LegalPage page={page} onBack={() => setPage('home')} />
+        <Footer onNavigate={setPage} />
+      </div>
+    );
+  }
+
   return (
     <div className="app">
       <div className="noise-overlay" />
@@ -68,7 +79,7 @@ function App() {
         <PricingSection />
         <ContactSection />
       </main>
-      <Footer />
+      <Footer onNavigate={setPage} />
     </div>
   );
 }

@@ -79,7 +79,6 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
-  backdrop-filter: blur(4px);
 }
 
 .ctaLabel {
