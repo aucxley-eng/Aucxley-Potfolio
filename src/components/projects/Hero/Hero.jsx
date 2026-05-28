@@ -163,17 +163,6 @@ export default function Hero() {
       <ParticleCanvas canvasRef={canvasRef} />
 
       <div className={styles.heroContent}>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <span className={styles.badge}>
-            <span className={styles.badgeDot} />
-            Available for hire
-          </span>
-        </motion.div>
-
         <motion.h1
           className={styles.heroTitle}
           initial={{ opacity: 0, y: 40 }}
