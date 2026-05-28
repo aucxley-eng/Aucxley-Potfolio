@@ -1,88 +1,74 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import Header from './components/common/Header/Header';
 import Hero from './components/projects/Hero/Hero';
+import AboutSection from './components/sections/AboutSection/AboutSection';
+import WhyChooseUsSection from './components/sections/WhyChooseUsSection/WhyChooseUsSection';
+import ProcessSection from './components/sections/ProcessSection/ProcessSection';
+import PricingSection from './components/sections/PricingSection/PricingSection';
+import SkillsSection from './components/sections/SkillsSection/SkillsSection';
 import ProjectsSection from './components/projects/ProjectsSection/ProjectsSection';
-import AddProjectModal from './components/projects/AddProjectModal/AddProjectModal';
+import ContactSection from './components/sections/ContactSection/ContactSection';
 import Footer from './components/common/Footer/Footer';
 import { getProjects } from './data/projects';
+import { useDarkMode } from './hooks/useDarkMode';
 import './styles/globals.css';
 
 function App() {
-  const [projects, setProjects] = useState([]);
+  const { isDark, toggle: toggleDark } = useDarkMode();
+
   const [searchTerm, setSearchTerm] = useState('');
-  const [showAddModal, setShowAddModal] = useState(false);
   const [filterTag, setFilterTag] = useState('');
-  
-  // Load initial projects
-  useEffect(() => {
-    setProjects(getProjects());
-  }, []);
-  
-  // Filter projects based on search term and tag
+
+  const projects = useMemo(() => getProjects(), []);
+
   const filteredProjects = useMemo(() => {
     let result = projects;
-    
     if (searchTerm) {
-      result = result.filter(project => 
-        project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        project.technologies.some(tech => 
-          tech.toLowerCase().includes(searchTerm.toLowerCase())
-        )
+      const term = searchTerm.toLowerCase();
+      result = result.filter(p =>
+        p.title.toLowerCase().includes(term) ||
+        p.description.toLowerCase().includes(term) ||
+        p.technologies.some(t => t.toLowerCase().includes(term))
       );
     }
-    
     if (filterTag) {
-      result = result.filter(project => 
-        project.technologies.includes(filterTag)
-      );
+      result = result.filter(p => p.technologies.includes(filterTag));
     }
-    
     return result;
   }, [projects, searchTerm, filterTag]);
-  
-  // Add new project
-  const handleAddProject = (newProject) => {
-    setProjects([...projects, { ...newProject, id: Date.now() }]);
-    setShowAddModal(false);
-  };
-  
-  // Delete a project
-  const handleDeleteProject = (id) => {
-    setProjects(projects.filter(project => project.id !== id));
-  };
-  
-  // Get all unique tags
+
   const allTags = useMemo(() => {
     const tags = new Set();
-    projects.forEach(project => {
-      project.technologies.forEach(tech => tags.add(tech));
-    });
+    projects.forEach(p => p.technologies.forEach(t => tags.add(t)));
     return Array.from(tags);
   }, [projects]);
-  
+
   return (
     <div className="app">
-      <Header />
+      <div className="noise-overlay" />
+      <Header
+        isDark={isDark}
+        onToggleDark={toggleDark}
+      />
       <main>
-        <Hero onAddProject={() => setShowAddModal(true)} />
-        <ProjectsSection 
+        <Hero />
+        <ProjectsSection
           projects={filteredProjects}
           searchTerm={searchTerm}
           filterTag={filterTag}
           onSearchChange={setSearchTerm}
           onTagFilter={setFilterTag}
-          onAddProject={() => setShowAddModal(true)}
-          onDeleteProject={handleDeleteProject}
           allTags={allTags}
         />
+        <AboutSection />
+        <WhyChooseUsSection />
+        <ProcessSection />
+        <SkillsSection />
+        <PricingSection />
+        <ContactSection />
       </main>
       <Footer />
-      <AddProjectModal 
-        isOpen={showAddModal}
-        onClose={() => setShowAddModal(false)}
-        onSubmit={handleAddProject}
-      />
     </div>
   );
 }

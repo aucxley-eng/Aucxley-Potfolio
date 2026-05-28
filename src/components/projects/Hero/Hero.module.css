@@ -1,41 +1,131 @@
 .hero {
   position: relative;
-  min-height: 80vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 2rem;
+  padding: 6rem 2rem 4rem;
+}
+
+.gradientMesh {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.meshOrb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.4;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+  top: -200px;
+  right: -200px;
+  animation: orbFloat 12s ease-in-out infinite;
+}
+
+.orb2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+  bottom: -150px;
+  left: -150px;
+  top: auto;
+  right: auto;
+  animation-delay: -4s;
+}
+
+.orb3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: -8s;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -30px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .heroContent {
+  position: relative;
+  z-index: 2;
   max-width: 800px;
   text-align: center;
-  z-index: 2;
-  position: relative;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.badgeDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #55efc4;
+  animation: pulseGlow 2s ease-in-out infinite;
 }
 
 .heroTitle {
-  font-size: 4rem;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 800;
-  margin-bottom: 1rem;
+  letter-spacing: -0.04em;
   line-height: 1.1;
-  letter-spacing: -1px;
-}
-
-.accent {
-  color: #f7b733;
+  margin-bottom: 0.5em;
+  color: var(--text-primary);
 }
 
 .heroSubtitle {
-  font-size: 1.25rem;
-  margin-bottom: 2rem;
-  opacity: 0.9;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  min-height: 2.5rem;
+}
+
+.cursor {
+  display: inline-block;
+  margin-left: 2px;
+  font-weight: 300;
+  animation: blink 1s step-end infinite;
+  color: var(--primary);
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.heroDescription {
+  font-size: 1.125rem;
+  color: var(--text-tertiary);
+  max-width: 500px;
+  margin: 0 auto 2.5rem;
 }
 
 .heroActions {
@@ -46,111 +136,78 @@
 }
 
 .primaryBtn {
-  background: #f7b733;
-  color: #333;
-  border: none;
-  padding: 0.75rem 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
   font-weight: 600;
   border-radius: 50px;
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
+  color: white;
+  border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-bounce);
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.25);
 }
 
 .primaryBtn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.35);
 }
 
 .secondaryBtn {
-  background: transparent;
-  color: white;
-  border: 2px solid white;
-  padding: 0.75rem 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
   font-weight: 600;
   border-radius: 50px;
+  color: var(--text-primary);
+  border: 2px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
 }
 
 .secondaryBtn:hover {
-  background: white;
-  color: #764ba2;
+  border-color: var(--primary);
+  color: var(--primary);
   transform: translateY(-3px);
 }
 
-.heroAnimation {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+.whatsappBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  color: white;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-bounce);
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.25);
+  text-decoration: none;
 }
 
-.floatingElements {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.element {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(5px);
-}
-
-.element1 {
-  width: 200px;
-  height: 200px;
-  top: 10%;
-  left: 10%;
-  animation: float 8s infinite ease-in-out;
-}
-
-.element2 {
-  width: 150px;
-  height: 150px;
-  top: 70%;
-  right: 10%;
-  animation: float 10s infinite ease-in-out reverse;
-}
-
-.element3 {
-  width: 100px;
-  height: 100px;
-  bottom: 20%;
-  left: 20%;
-  animation: float 6s infinite ease-in-out;
-}
-
-.element4 {
-  width: 120px;
-  height: 120px;
-  top: 30%;
-  right: 30%;
-  animation: float 12s infinite ease-in-out reverse;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-20px) rotate(10deg);
-  }
+.whatsappBtn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.35);
 }
 
 @media (max-width: 768px) {
-  .heroTitle {
-    font-size: 2.5rem;
+  .hero {
+    min-height: 90vh;
+    padding: 5rem 1rem 3rem;
   }
-  
-  .heroSubtitle {
-    font-size: 1rem;
-  }
-  
-  .element1, .element2, .element3, .element4 {
-    display: none;
+
+  .meshOrb {
+    width: 300px;
+    height: 300px;
   }
 }

@@ -1,79 +1,64 @@
-.projectsSection {
-  padding: 5rem 0;
-  background: white;
+.section {
+  padding: 6rem 0;
+  background: var(--bg-secondary);
 }
 
-.sectionHeader {
+.header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   margin-bottom: 3rem;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.sectionTitle {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: var(--text-color);
-  position: relative;
-}
-
-.sectionTitle::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  width: 60px;
-  height: 4px;
-  background: var(--accent-color);
-  border-radius: 2px;
-}
-
-.addProjectBtn {
-  background: var(--accent-color);
-  color: var(--text-color);
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-weight: 600;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.addProjectBtn:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow);
-}
-
-.projectsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 2rem;
 }
 
-.noProjects {
+.addBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.5rem;
+}
+
+.empty {
   text-align: center;
-  padding: 3rem 0;
+  padding: 4rem 2rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
-.noProjects h3 {
+.emptyIcon {
+  color: var(--text-tertiary);
+  margin-bottom: 0.5rem;
+}
+
+.empty h3 {
   font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: var(--text-color);
+  color: var(--text-primary);
 }
 
-.noProjects p {
-  color: var(--light-text);
-  margin-bottom: 2rem;
+.empty p {
+  color: var(--text-secondary);
+  max-width: 400px;
 }
 
 @media (max-width: 768px) {
-  .sectionTitle {
-    font-size: 2rem;
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  .projectsGrid {
+
+  .grid {
     grid-template-columns: 1fr;
   }
 }

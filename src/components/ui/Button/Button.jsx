@@ -1,18 +1,16 @@
-import React from 'react';
+import { motion } from 'framer-motion';
 import styles from './Button.module.css';
 
-const Button = ({ children, onClick, variant = 'primary', type = 'button', className = '' }) => {
-  const buttonClass = `${styles.button} ${styles[variant]} ${className}`;
-  
+export default function Button({ children, onClick, variant = 'primary', type = 'button', className = '' }) {
   return (
-    <button 
-      type={type} 
-      className={buttonClass} 
+    <motion.button
+      type={type}
+      className={`${styles.button} ${styles[variant]} ${className}`}
       onClick={onClick}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.97 }}
     >
       {children}
-    </button>
+    </motion.button>
   );
-};
-
-export default Button;
+}

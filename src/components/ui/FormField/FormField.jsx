@@ -1,9 +1,8 @@
-import React from 'react';
 import styles from './FormField.module.css';
 
-const FormField = ({ label, name, value, onChange, error, textarea = false, type = 'text', placeholder, required = false }) => {
+export default function FormField({ label, name, value, onChange, error, textarea = false, type = 'text', placeholder, required = false }) {
   return (
-    <div className={styles.formField}>
+    <div className={styles.field}>
       <label htmlFor={name} className={styles.label}>
         {label} {required && <span className={styles.required}>*</span>}
       </label>
@@ -32,6 +31,4 @@ const FormField = ({ label, name, value, onChange, error, textarea = false, type
       {error && <span className={styles.error}>{error}</span>}
     </div>
   );
-};
-
-export default FormField;
+}
