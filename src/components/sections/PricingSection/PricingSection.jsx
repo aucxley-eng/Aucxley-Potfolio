@@ -13,14 +13,14 @@ const plans = [
     name: 'Business',
     price: '60,000',
     description: 'For growing SMEs ready to manage clients and scale.',
-    features: ['Fully responsive (not a static site — adapts to every device)', 'Up to 6-page website', 'CMS integration so you can edit content yourself', 'M-Pesa payment integration', '3 months support'],
+    features: ['Fully responsive (not a static site — adapts to every device)', 'Up to 6-page website', 'CMS integration so you can edit content yourself', 'Payment integration (M-Pesa, cards, or both)', '3 months support'],
     popular: true,
   },
   {
     name: 'Scale',
     price: '80,000',
     description: 'For established businesses needing online sales and payments.',
-    features: ['Full e-commerce store (responsive — works on any device, unlike basic static shops)', 'M-Pesa & card payments', 'Inventory management', 'Order tracking dashboard', '6 months support'],
+    features: ['Full e-commerce store (responsive — works on any device, unlike basic static shops)', 'Payment integration (M-Pesa, cards, or both)', 'Inventory management', 'Order tracking dashboard', '6 months support'],
     popular: false,
   },
   {
