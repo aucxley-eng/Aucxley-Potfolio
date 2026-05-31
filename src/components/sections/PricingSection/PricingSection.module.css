@@ -152,9 +152,13 @@
 
 @media (max-width: 640px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 400px;
+    grid-template-columns: 1fr;
+    max-width: 380px;
     margin: 0 auto;
+  }
+
+  .card {
+    padding: 1.5rem 1.25rem;
   }
 
   .popular {
