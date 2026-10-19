@@ -1,87 +1,85 @@
-import { useState, useMemo } from 'react';
+import { useEffect } from 'react';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Header from './components/common/Header/Header';
-import Hero from './components/projects/Hero/Hero';
-import AboutSection from './components/sections/AboutSection/AboutSection';
-import WhyChooseUsSection from './components/sections/WhyChooseUsSection/WhyChooseUsSection';
-import ProcessSection from './components/sections/ProcessSection/ProcessSection';
-import PricingSection from './components/sections/PricingSection/PricingSection';
-import SkillsSection from './components/sections/SkillsSection/SkillsSection';
-import ProjectsSection from './components/projects/ProjectsSection/ProjectsSection';
-import ContactSection from './components/sections/ContactSection/ContactSection';
 import Footer from './components/common/Footer/Footer';
+import Home from './pages/Home/Home';
+import ServicesPage from './pages/Services/ServicesPage';
+import ServiceDetailPage from './pages/Services/ServiceDetailPage';
+import WorkPage from './pages/Work/WorkPage';
+import CaseStudyPage from './pages/Work/CaseStudyPage';
+import AboutPage from './pages/About/AboutPage';
+import ContactPage from './pages/Contact/ContactPage';
 import LegalPage from './components/pages/LegalPage/LegalPage';
-import { getProjects } from './data/projects';
+import DemoApp from './components/mockup/DemoApp';
+import BiasharaApp from './components/mockup/biashara/BiasharaApp';
+import NotFoundPage from './pages/NotFoundPage';
 import { useDarkMode } from './hooks/useDarkMode';
 import './styles/globals.css';
 
-function App() {
-  const { isDark, toggle: toggleDark } = useDarkMode();
-  const [page, setPage] = useState('home');
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterTag, setFilterTag] = useState('');
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
 
-  const projects = useMemo(() => getProjects(), []);
+function DemoLayout({ children }) {
+  return <div className="app">{children}</div>;
+}
 
-  const filteredProjects = useMemo(() => {
-    let result = projects;
-    if (searchTerm) {
-      const term = searchTerm.toLowerCase();
-      result = result.filter(p =>
-        p.title.toLowerCase().includes(term) ||
-        p.description.toLowerCase().includes(term) ||
-        p.technologies.some(t => t.toLowerCase().includes(term))
-      );
-    }
-    if (filterTag) {
-      result = result.filter(p => p.technologies.includes(filterTag));
-    }
-    return result;
-  }, [projects, searchTerm, filterTag]);
-
-  const allTags = useMemo(() => {
-    const tags = new Set();
-    projects.forEach(p => p.technologies.forEach(t => tags.add(t)));
-    return Array.from(tags);
-  }, [projects]);
-
-  if (page === 'privacy' || page === 'terms') {
-    return (
-      <div className="app">
-        <div className="noise-overlay" />
-        <Header isDark={isDark} onToggleDark={toggleDark} />
-        <LegalPage page={page} onBack={() => setPage('home')} />
-        <Footer onNavigate={setPage} />
-      </div>
-    );
-  }
-
+function SchoolHubDemo() {
+  const navigate = useNavigate();
   return (
-    <div className="app">
-      <div className="noise-overlay" />
-      <Header
-        isDark={isDark}
-        onToggleDark={toggleDark}
-      />
-      <main>
-        <Hero />
-        <ProjectsSection
-          projects={filteredProjects}
-          searchTerm={searchTerm}
-          filterTag={filterTag}
-          onSearchChange={setSearchTerm}
-          onTagFilter={setFilterTag}
-          allTags={allTags}
-        />
-        <AboutSection />
-        <WhyChooseUsSection />
-        <ProcessSection />
-        <SkillsSection />
-        <PricingSection />
-        <ContactSection />
-      </main>
-      <Footer onNavigate={setPage} />
-    </div>
+    <DemoLayout>
+      <DemoApp onBack={() => navigate('/work/schoolhub')} />
+    </DemoLayout>
   );
 }
 
-export default App;
+function BiasharaDemo() {
+  const navigate = useNavigate();
+  return (
+    <DemoLayout>
+      <BiasharaApp onBack={() => navigate('/work/biashara')} />
+    </DemoLayout>
+  );
+}
+
+export default function App() {
+  const { isDark, toggle: toggleDark } = useDarkMode();
+
+  return (
+    <div className="app">
+      <ScrollToTop />
+      <div className="noise-overlay" />
+      <Routes>
+        <Route path="/demo/schoolhub" element={<SchoolHubDemo />} />
+        <Route path="/demo/biashara" element={<BiasharaDemo />} />
+        <Route
+          path="*"
+          element={
+            <>
+              <Header isDark={isDark} onToggleDark={toggleDark} />
+              <main>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/services" element={<ServicesPage />} />
+                  <Route path="/services/:slug" element={<ServiceDetailPage />} />
+                  <Route path="/work" element={<WorkPage />} />
+                  <Route path="/work/:slug" element={<CaseStudyPage />} />
+                  <Route path="/about" element={<AboutPage />} />
+                  <Route path="/contact" element={<ContactPage />} />
+                  <Route path="/privacy" element={<LegalPage page="privacy" />} />
+                  <Route path="/terms" element={<LegalPage page="terms" />} />
+                  <Route path="*" element={<NotFoundPage />} />
+                </Routes>
+              </main>
+              <Footer />
+            </>
+          }
+        />
+      </Routes>
+    </div>
+  );
+}

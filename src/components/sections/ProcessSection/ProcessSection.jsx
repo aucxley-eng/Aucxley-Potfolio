@@ -1,23 +1,6 @@
 import { motion } from 'framer-motion';
+import { processSteps } from '../../../data/company';
 import styles from './ProcessSection.module.css';
-
-const steps = [
-  {
-    step: 1,
-    title: 'Discovery Call',
-    description: 'We discuss your project goals, requirements, and timeline. Free 15-minute consultation to understand your vision.',
-  },
-  {
-    step: 2,
-    title: 'Proposal & MVP',
-    description: 'I prepare a detailed proposal with scope, timeline, and pricing. A minimum viable product is built for your review.',
-  },
-  {
-    step: 3,
-    title: 'Delivery & Support',
-    description: 'Your project is launched with ongoing support, updates, and improvements to ensure long-term success.',
-  },
-];
 
 export default function ProcessSection() {
   return (
@@ -30,17 +13,17 @@ export default function ProcessSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <span className="section-label">How I Work</span>
+          <span className="section-label">How We Work</span>
           <h2 className="section-title">
-            Simple <span className="gradient-text">3-Step Process</span>
+            A Simple, <span className="gradient-text">Transparent Process</span>
           </h2>
           <p className="section-subtitle">
-            From idea to launch, I keep it straightforward and transparent.
+            From idea to launch, we keep delivery straightforward — you always know what is next.
           </p>
         </motion.div>
 
         <div className={styles.steps}>
-          {steps.map((s, i) => (
+          {processSteps.map((s, i) => (
             <motion.div
               key={s.step}
               className={styles.step}
@@ -51,7 +34,7 @@ export default function ProcessSection() {
             >
               <div className={styles.stepNumber}>
                 <span>0{s.step}</span>
-                {i < steps.length - 1 && <div className={styles.connector} />}
+                {i < processSteps.length - 1 && <div className={styles.connector} />}
               </div>
               <div className={styles.stepCard}>
                 <h3 className={styles.stepTitle}>{s.title}</h3>

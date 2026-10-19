@@ -1,0 +1,124 @@
+.list {
+  padding: 4rem 0 2rem;
+  background: var(--bg-primary);
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2.5rem;
+  padding: 2.5rem;
+  margin-bottom: 1.5rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  transition: box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+.row:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-text);
+}
+
+.rowMain {
+  display: flex;
+  gap: 1.75rem;
+  flex: 1;
+}
+
+.rowIndex {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-tertiary);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.rowTitle {
+  font-size: 1.5rem;
+  margin: 0 0 0.35rem;
+}
+
+.rowTitle a {
+  color: var(--text-primary);
+}
+
+.rowTitle a:hover {
+  color: var(--accent-text);
+}
+
+.rowTag {
+  color: var(--accent-text);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin: 0 0 0.75rem;
+}
+
+.rowOverview {
+  color: var(--text-secondary);
+  font-size: 0.975rem;
+  line-height: 1.7;
+  margin: 0 0 1rem;
+  max-width: 640px;
+}
+
+.offeringList {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.offeringList li {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--glass-border);
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+}
+
+.rowCta {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: white !important;
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.rowCta:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.engagement {
+  padding: 4rem 0 6rem;
+  background: var(--bg-secondary);
+}
+
+.engagementHeader {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 3rem;
+}
+
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+    padding: 1.75rem;
+  }
+
+  .rowMain {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}

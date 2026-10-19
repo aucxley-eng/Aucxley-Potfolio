@@ -1,0 +1,340 @@
+.meta {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: white !important;
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.primaryBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--accent-text) !important;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.secondaryBtn:hover {
+  transform: translateY(-2px);
+  border-color: var(--secondary);
+}
+
+.content {
+  padding: 4rem 0 2rem;
+  background: var(--bg-primary);
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 3rem;
+  align-items: start;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  min-width: 0;
+}
+
+.block {
+  background: var(--bg-secondary);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  padding: 2.25rem;
+}
+
+.blockTitle {
+  font-size: 1.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.blockText {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin: 0;
+}
+
+.highlights {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+}
+
+.highlights li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.highlights svg {
+  color: var(--accent-text);
+  flex-shrink: 0;
+  margin-top: 0.2em;
+}
+
+.modules {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.module {
+  padding: 1.25rem;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+}
+
+.moduleName {
+  font-size: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.moduleDesc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.tutorialHeader {
+  margin-bottom: 2rem;
+}
+
+.tutorialHeader .blockTitle {
+  margin-top: 0.5rem;
+}
+
+.tutorialHeader .blockText {
+  margin-bottom: 1.25rem;
+}
+
+.tutorialCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.7rem 1.35rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: white !important;
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.tutorialCta:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.steps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  border-left: 2px solid var(--glass-border);
+}
+
+.step {
+  display: flex;
+  gap: 1.25rem;
+  padding: 0 0 2rem 1.5rem;
+  position: relative;
+}
+
+.step:last-child {
+  padding-bottom: 0;
+}
+
+.stepNum {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--accent-text);
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  position: absolute;
+  left: -1rem;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.stepBody {
+  padding-left: 0.5rem;
+  min-width: 0;
+}
+
+.stepTitle {
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+
+.stepText {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin: 0 0 0.75rem;
+}
+
+.stepPath {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--accent-text);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+}
+
+.techWrap {
+  margin-top: 1.5rem;
+}
+
+.sidebar {
+  position: sticky;
+  top: 100px;
+}
+
+.sidebarCard {
+  background: var(--bg-secondary);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  padding: 1.75rem;
+}
+
+.sidebarTitle {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+  margin-bottom: 1.25rem;
+}
+
+.facts {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0 0 1.5rem;
+}
+
+.fact dt {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-tertiary);
+  margin-bottom: 0.2rem;
+}
+
+.fact dd {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.sidebarLink {
+  display: block;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--accent-text) !important;
+  padding: 0.4rem 0;
+}
+
+.related {
+  padding: 5rem 0;
+  background: var(--bg-secondary);
+}
+
+.relatedHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 960px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .modules,
+  .relatedGrid {
+    grid-template-columns: 1fr;
+  }
+}

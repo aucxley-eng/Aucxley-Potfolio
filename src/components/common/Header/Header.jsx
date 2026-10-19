@@ -1,19 +1,13 @@
 import { useState, useEffect } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { services } from '../../../data/services';
 import styles from './Header.module.css';
-
-const navLinks = [
-  { href: '#services', label: 'Services' },
-  { href: '#about', label: 'About' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#pricing', label: 'Pricing' },
-  { href: '#contact', label: 'Contact' },
-];
 
 export default function Header({ isDark, onToggleDark }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -29,17 +23,42 @@ export default function Header({ isDark, onToggleDark }) {
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <div className={`container ${styles.headerContent}`}>
-        <a href="#" className={styles.logo}>
+        <Link to="/" className={styles.logo}>
           <span className={styles.logoText}>Aucxley</span>
           <span className={styles.logoAccent}> Solutions</span>
-        </a>
+        </Link>
 
         <nav className={styles.desktopNav}>
-          {navLinks.map(link => (
-            <a key={link.href} href={link.href} className={styles.navLink}>
-              {link.label}
-            </a>
-          ))}
+          <NavLink to="/" end className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>
+            Home
+          </NavLink>
+
+          <div className={styles.dropdown}>
+            <NavLink to="/services" className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>
+              Services
+              <svg className={styles.caret} xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </NavLink>
+            <div className={styles.dropdownMenu}>
+              {services.map((s) => (
+                <Link key={s.slug} to={`/services/${s.slug}`} className={styles.dropdownItem}>
+                  <span className={styles.dropdownTitle}>{s.name}</span>
+                  <span className={styles.dropdownTag}>{s.tagline}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <NavLink to="/work" className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>
+            Work
+          </NavLink>
+          <NavLink to="/about" className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>
+            About
+          </NavLink>
+          <NavLink to="/contact" className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>
+            Contact
+          </NavLink>
         </nav>
 
         <div className={styles.actions}>
@@ -75,6 +94,10 @@ export default function Header({ isDark, onToggleDark }) {
             </motion.div>
           </button>
 
+          <Link to="/contact" className={styles.headerCta}>
+            Start a Project
+          </Link>
+
           <button
             className={styles.hamburger}
             onClick={() => setMobileOpen(prev => !prev)}
@@ -97,16 +120,41 @@ export default function Header({ isDark, onToggleDark }) {
             transition={{ duration: 0.25 }}
           >
             <nav className={styles.mobileNav}>
-              {navLinks.map(link => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className={styles.mobileLink}
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
+              <NavLink to="/" end className={styles.mobileLink} onClick={() => setMobileOpen(false)}>
+                Home
+              </NavLink>
+              <button
+                className={styles.mobileLink}
+                onClick={() => setMobileServicesOpen(prev => !prev)}
+              >
+                Services
+              </button>
+              {mobileServicesOpen && (
+                <div className={styles.mobileSubnav}>
+                  <NavLink to="/services" className={styles.mobileSubLink} onClick={() => setMobileOpen(false)}>
+                    All Services
+                  </NavLink>
+                  {services.map((s) => (
+                    <NavLink
+                      key={s.slug}
+                      to={`/services/${s.slug}`}
+                      className={styles.mobileSubLink}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {s.name}
+                    </NavLink>
+                  ))}
+                </div>
+              )}
+              <NavLink to="/work" className={styles.mobileLink} onClick={() => setMobileOpen(false)}>
+                Work
+              </NavLink>
+              <NavLink to="/about" className={styles.mobileLink} onClick={() => setMobileOpen(false)}>
+                About
+              </NavLink>
+              <NavLink to="/contact" className={styles.mobileLink} onClick={() => setMobileOpen(false)}>
+                Contact
+              </NavLink>
             </nav>
           </motion.div>
         )}

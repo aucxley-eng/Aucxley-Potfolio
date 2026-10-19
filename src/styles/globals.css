@@ -1,28 +1,33 @@
 :root {
-  --primary: #475569;
-  --primary-light: #64748b;
-  --primary-dark: #334155;
-  --secondary: #d97706;
-  --accent: #f59e0b;
-  --accent-2: #fbbf24;
+  --primary: #25272c;
+  --primary-light: #45484f;
+  --primary-dark: #15171a;
+  --secondary: #0fa37b;
+  --accent: #0b7c5a;
+  --accent-2: #b8f7e4;
 
-  --bg-primary: #f8fafc;
+  --grad-a: #0b7c5a;
+  --grad-b: #12b886;
+  --accent-rgb: 15, 163, 123;
+  --accent-text: #0b7c5a;
+
+  --bg-primary: #f7fcfa;
   --bg-secondary: #ffffff;
-  --bg-tertiary: #f1f5f9;
+  --bg-tertiary: #eaf6f1;
   --bg-card: rgba(255, 255, 255, 0.6);
 
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-tertiary: #94a3b8;
+  --text-primary: #25272c;
+  --text-secondary: #4c5158;
+  --text-tertiary: #868d95;
 
-  --glass-bg: rgba(255, 255, 255, 0.6);
-  --glass-border: rgba(0, 0, 0, 0.06);
-  --glass-shadow: rgba(15, 23, 42, 0.06);
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(37, 39, 44, 0.08);
+  --glass-shadow: rgba(37, 39, 44, 0.06);
 
-  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
-  --shadow-md: 0 4px 16px rgba(15, 23, 42, 0.08);
-  --shadow-lg: 0 8px 30px rgba(15, 23, 42, 0.12);
-  --shadow-xl: 0 16px 48px rgba(15, 23, 42, 0.16);
+  --shadow-sm: 0 1px 3px rgba(37, 39, 44, 0.06);
+  --shadow-md: 0 4px 16px rgba(37, 39, 44, 0.08);
+  --shadow-lg: 0 8px 30px rgba(37, 39, 44, 0.12);
+  --shadow-xl: 0 16px 48px rgba(37, 39, 44, 0.16);
 
   --radius-sm: 6px;
   --radius-md: 10px;
@@ -41,30 +46,35 @@
 }
 
 [data-theme="dark"] {
-  --primary: #94a3b8;
-  --primary-light: #cbd5e1;
-  --primary-dark: #64748b;
-  --secondary: #f59e0b;
-  --accent: #fbbf24;
-  --accent-2: #fcd34d;
+  --primary: #b8f7e4;
+  --primary-light: #e7fef4;
+  --primary-dark: #8febcf;
+  --secondary: #0fa37b;
+  --accent: #0b7c5a;
+  --accent-2: #b8f7e4;
 
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-tertiary: #334155;
-  --bg-card: rgba(30, 41, 59, 0.6);
+  --grad-a: #b8f7e4;
+  --grad-b: #6ee7c5;
+  --accent-rgb: 184, 247, 228;
+  --accent-text: #6ee7c5;
 
-  --text-primary: #f1f5f9;
-  --text-secondary: #94a3b8;
-  --text-tertiary: #64748b;
+  --bg-primary: #25272c;
+  --bg-secondary: #2c2f35;
+  --bg-tertiary: #343840;
+  --bg-card: rgba(44, 47, 53, 0.6);
 
-  --glass-bg: rgba(30, 41, 59, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.06);
-  --glass-shadow: rgba(0, 0, 0, 0.2);
+  --text-primary: #effff8;
+  --text-secondary: #a7b0ae;
+  --text-tertiary: #7a8380;
 
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.4);
-  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.5);
+  --glass-bg: rgba(44, 47, 53, 0.65);
+  --glass-border: rgba(184, 247, 228, 0.1);
+  --glass-shadow: rgba(0, 0, 0, 0.3);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.45);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.55);
 }
 
 *, *::before, *::after {
@@ -92,7 +102,7 @@ body {
 
 ::selection {
   background: var(--primary);
-  color: white;
+  color: var(--bg-primary);
 }
 
 ::-webkit-scrollbar {
@@ -214,7 +224,7 @@ input, textarea, select {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--secondary), var(--accent));
+  background: linear-gradient(135deg, var(--grad-a), var(--grad-b));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -232,7 +242,7 @@ input, textarea, select {
   position: absolute;
   inset: -2px;
   border-radius: inherit;
-  background: linear-gradient(135deg, var(--secondary), var(--accent));
+  background: linear-gradient(135deg, var(--grad-a), var(--grad-b));
   z-index: -1;
   opacity: 0.4;
   transition: opacity var(--transition-base);
@@ -251,7 +261,7 @@ input, textarea, select {
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: linear-gradient(135deg, var(--primary), var(--grad-b));
   filter: blur(20px);
   opacity: 0;
   z-index: -1;
@@ -284,8 +294,8 @@ input, textarea, select {
 }
 
 @keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.2); }
-  50% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.4); }
+  0%, 100% { box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.25); }
+  50% { box-shadow: 0 0 40px rgba(var(--accent-rgb), 0.45); }
 }
 
 @keyframes shimmer {

@@ -1,0 +1,133 @@
+.lead {
+  margin-top: 1.25rem;
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  max-width: 680px;
+}
+
+.offerings {
+  padding: 4rem 0;
+  background: var(--bg-primary);
+}
+
+.offering {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  padding: 2.25rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+}
+
+.offering:last-child {
+  margin-bottom: 0;
+}
+
+.offeringTitle {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.offeringDesc {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+.points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+}
+
+.points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.points svg {
+  color: var(--accent-text);
+  flex-shrink: 0;
+  margin-top: 0.2em;
+}
+
+.related {
+  padding: 5rem 0;
+  background: var(--bg-secondary);
+}
+
+.relatedHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.tech {
+  padding: 3rem 0;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--glass-border);
+}
+
+.allServices {
+  padding: 4rem 0;
+  background: var(--bg-tertiary);
+}
+
+.allTitle {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.allGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.allCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-fast);
+}
+
+.allCard:hover {
+  border-color: var(--accent-text);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.allName {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.allTag {
+  font-size: 0.875rem;
+  color: var(--text-tertiary);
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .allGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,16 +1,35 @@
-# React + Vite
+# Aucxley Solutions — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A single-page portfolio and services site for Aucxley Ben, a full-stack developer
+and backend engineer based in Nairobi, Kenya.
 
-Currently, two official plugins are available:
+Built with React 19, Vite 7, and Framer Motion. Styling uses CSS Modules backed by a
+global CSS-variable design system with light/dark theme support.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Sections
 
-## React Compiler
+- Hero (canvas particle field + typewriter headline)
+- Services (search + tag filter, cards, and a detail modal with optional DB-schema viewer)
+- About (bio, resume download, contact info)
+- Why Choose Us / Process / Skills / Pricing / Contact
+- Legal pages (Privacy Policy, Terms of Service) rendered via in-app state
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting started
 
-## Expanding the ESLint configuration
+```bash
+npm install
+npm run dev      # start dev server
+npm run build    # production build
+npm run preview  # preview the production build
+npm run lint     # run ESLint
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Content
+
+All site content lives in static data files — no backend required:
+
+- `src/data/projects.js` — the services shown in the Services section
+- `src/data/skills.js` — skill categories and personal info (name, bio, resume path, contact)
+
+Update these files to change what visitors see.
+### example##

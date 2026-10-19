@@ -1,0 +1,27 @@
+.workSection {
+  padding: 6rem 0;
+  background: var(--bg-primary);
+}
+
+.sectionHeader {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 3.5rem;
+}
+
+.workGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.techSection {
+  padding: 4rem 0;
+  background: var(--bg-primary);
+}
+
+@media (max-width: 900px) {
+  .workGrid {
+    grid-template-columns: 1fr;
+  }
+}

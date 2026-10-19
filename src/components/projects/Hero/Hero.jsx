@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import Button from '../../ui/Button/Button';
 import styles from './Hero.module.css';
 
 const typewriterWords = [
-  'Full-Stack Developer',
-  'UI Engineer',
-  'Creative Thinker',
-  'Problem Solver',
+  'Websites',
+  'E-Commerce',
+  'Custom Software',
+  'School Systems',
 ];
 
 function ParticleCanvas({ canvasRef }) {
@@ -17,6 +17,7 @@ function ParticleCanvas({ canvasRef }) {
     const ctx = canvas.getContext('2d');
     let animId;
     let particles = [];
+    let running = true;
     const mouse = { x: -1000, y: -1000 };
 
     const resize = () => {
@@ -56,7 +57,7 @@ function ParticleCanvas({ canvasRef }) {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = isDark ? 'rgba(251, 191, 36, 0.25)' : 'rgba(245, 158, 11, 0.2)';
+        ctx.fillStyle = isDark ? 'rgba(184, 247, 228, 0.3)' : 'rgba(15, 163, 123, 0.22)';
         ctx.fill();
       }
 
@@ -70,8 +71,8 @@ function ParticleCanvas({ canvasRef }) {
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.strokeStyle = isDark
-              ? `rgba(162, 155, 254, ${0.15 * (1 - dist / 120)})`
-              : `rgba(245, 158, 11, ${0.08 * (1 - dist / 120)})`;
+              ? `rgba(184, 247, 228, ${0.18 * (1 - dist / 120)})`
+              : `rgba(15, 163, 123, ${0.1 * (1 - dist / 120)})`;
             ctx.stroke();
           }
         }
@@ -86,13 +87,25 @@ function ParticleCanvas({ canvasRef }) {
       mouse.y = e.clientY - rect.top;
     };
 
+    const observer = new IntersectionObserver(([entry]) => {
+      running = entry.isIntersecting;
+      if (running) {
+        draw();
+      } else {
+        cancelAnimationFrame(animId);
+      }
+    }, { threshold: 0 });
+
     window.addEventListener('resize', resize);
     canvas.addEventListener('mousemove', onMouse);
+    observer.observe(canvas);
     resize();
     draw();
 
     return () => {
+      running = false;
       cancelAnimationFrame(animId);
+      observer.disconnect();
       window.removeEventListener('resize', resize);
       canvas.removeEventListener('mousemove', onMouse);
     };
@@ -142,7 +155,7 @@ function Typewriter({ words }) {
 
   return (
     <span>
-      {displayText}
+      We build <span className="gradient-text">{displayText}</span>
       <span className={styles.cursor}>|</span>
     </span>
   );
@@ -163,13 +176,24 @@ export default function Hero() {
       <ParticleCanvas canvasRef={canvasRef} />
 
       <div className={styles.heroContent}>
+        <motion.span
+          className={styles.eyebrow}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        >
+          Technology Studio · Nairobi, Kenya
+        </motion.span>
+
         <motion.h1
           className={styles.heroTitle}
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
-          Hi, I&apos;m <span className="gradient-text">Aucxley Ben</span>
+          We Build the Systems
+          <br />
+          <span className="gradient-text">Businesses Run On</span>
         </motion.h1>
 
         <motion.p
@@ -187,8 +211,9 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
-          Building beautiful, performant digital experiences
-          with modern web technologies.
+          Aucxley Solutions is a full-stack technology studio. We design and engineer
+          websites, e-commerce platforms, and custom management systems for ambitious
+          businesses across East Africa.
         </motion.p>
 
         <motion.div
@@ -197,18 +222,16 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
         >
-          <a href="#projects" className={styles.primaryBtn}>
+          <Link to="/work" className={styles.primaryBtn}>
+            Our Work
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="6 9 12 15 18 9" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
             </svg>
-            View Work
-          </a>
-          <a href="https://wa.me/254796606363" target="_blank" rel="noopener noreferrer" className={styles.whatsappBtn}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-            </svg>
-            Chat on WhatsApp
-          </a>
+          </Link>
+          <Link to="/contact" className={styles.secondaryBtn}>
+            Start a Project
+          </Link>
         </motion.div>
       </div>
     </section>

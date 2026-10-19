@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import Tag from '../../ui/Tag/Tag';
 import styles from './ProjectCard.module.css';
 
-export default function ProjectCard({ project, onView, index = 0 }) {
+export default function ProjectCard({ project, onView, onOpenDemo, index = 0 }) {
   const cardRef = useRef(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
@@ -60,6 +60,19 @@ export default function ProjectCard({ project, onView, index = 0 }) {
           <img src={project.imageUrl} alt={project.title} loading="lazy" />
           <div className={`${styles.overlay} ${isHovered ? styles.overlayVisible : ''}`}>
             <div className={styles.overlayActions}>
+              <button
+                className={styles.demoBtn}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (onOpenDemo) onOpenDemo(project);
+                }}
+                aria-label={`View demo for ${project.title}`}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                  <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+                View Demo
+              </button>
               <span className={styles.viewHint}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />

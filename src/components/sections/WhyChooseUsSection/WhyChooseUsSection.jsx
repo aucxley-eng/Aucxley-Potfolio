@@ -3,8 +3,8 @@ import styles from './WhyChooseUsSection.module.css';
 
 const reasons = [
   {
-    title: 'Lightning Fast Delivery',
-    description: 'I work efficiently and respect your timeline, delivering quality results without unnecessary delays.',
+    title: 'Engineering-First Delivery',
+    description: 'We ship production systems, not prototypes. Every engagement is built on solid architecture, tested workflows, and infrastructure that holds up in the real world.',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
@@ -12,8 +12,8 @@ const reasons = [
     ),
   },
   {
-    title: 'Bank-Grade Security',
-    description: 'Every project is built with security best practices to protect your data and your customers.',
+    title: 'Built for How Africa Works',
+    description: 'M-Pesa payments, low-bandwidth environments, SMS-first communication, and roles that mirror how schools and SMEs actually operate.',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
@@ -22,8 +22,8 @@ const reasons = [
     ),
   },
   {
-    title: 'Built For You',
-    description: 'No templates. Every solution is tailored to your specific business needs and goals.',
+    title: 'No Templates, Ever',
+    description: 'Every platform we deliver is designed around your processes. From invoice logic to transport manifests, the software matches how your business really runs.',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -32,8 +32,8 @@ const reasons = [
     ),
   },
   {
-    title: 'Scalable Solutions',
-    description: 'Built to grow with you — from a simple landing page to a full platform as your business expands.',
+    title: 'Transparent From Day One',
+    description: 'Clear proposals, visible progress, and interactive demos before you commit. You always know what is being built, why, and what it costs.',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
@@ -63,12 +63,12 @@ export default function WhyChooseUsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <span className="section-label">Why Choose Me</span>
+          <span className="section-label">Why Aucxley Solutions</span>
           <h2 className="section-title">
-            What <span className="gradient-text">sets me apart</span>
+            What <span className="gradient-text">sets us apart</span>
           </h2>
           <p className="section-subtitle">
-            I am more than a developer. I am your dedicated technical partner.
+            We are more than developers. We are your dedicated technology partner.
           </p>
         </motion.div>
 

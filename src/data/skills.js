@@ -68,8 +68,7 @@ export const personalInfo = {
   name: "Aucxley Ben",
   tagline: "Full-Stack Developer & Backend Engineer",
   bio: "I build full-stack web applications and systems across a wide range of languages and frameworks — from Python and JavaScript ecosystems to Go, Rust, C++, and beyond. I design relational databases, architect RESTful APIs, deploy cloud infrastructure, and craft polished frontend experiences. My stack adapts to the project, not the other way around.",
-  avatar: "",
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "/Aucxley_Ben_Oluoch_Resume.pdf",
   email: "aucxley@gmail.com",
   location: "Nairobi, Kenya",
 };

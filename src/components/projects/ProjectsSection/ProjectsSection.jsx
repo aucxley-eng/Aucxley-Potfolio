@@ -12,8 +12,24 @@ export default function ProjectsSection({
   onSearchChange,
   onTagFilter,
   allTags,
+  onOpenDemo,
 }) {
   const [selectedProject, setSelectedProject] = useState(null);
+
+  const openDemo = (project) => {
+    if (!project || project.demoKey) {
+      setSelectedProject(null);
+      if (project && project.demoKey && onOpenDemo) onOpenDemo(project.demoKey);
+      return;
+    }
+    window.open(
+      `https://wa.me/254796606363?text=${encodeURIComponent(
+        `Hi Aucxley, I would like to see a demo of ${project.title}.`
+      )}`,
+      '_blank',
+      'noopener,noreferrer'
+    );
+  };
 
   return (
     <section id="services" className={styles.section}>
@@ -58,6 +74,7 @@ export default function ProjectsSection({
                   key={project.id}
                   project={project}
                   onView={setSelectedProject}
+                  onOpenDemo={openDemo}
                   index={i}
                 />
               ))}
@@ -85,6 +102,7 @@ export default function ProjectsSection({
           <ProjectDetail
             project={selectedProject}
             onClose={() => setSelectedProject(null)}
+            onViewDemo={() => openDemo(selectedProject)}
           />
         )}
       </AnimatePresence>

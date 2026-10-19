@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './ProjectDetail.module.css';
 
@@ -154,8 +154,21 @@ function SchemaViewer({ schema }) {
   );
 }
 
-export default function ProjectDetail({ project, onClose }) {
+export default function ProjectDetail({ project, onClose, onViewDemo }) {
   const [activeTab, setActiveTab] = useState('overview');
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [onClose]);
 
   return (
     <motion.div
@@ -167,6 +180,9 @@ export default function ProjectDetail({ project, onClose }) {
     >
       <motion.div
         className={styles.modal}
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${project.title} details`}
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
@@ -176,6 +192,14 @@ export default function ProjectDetail({ project, onClose }) {
           <div className={styles.modalTitleRow}>
             <h2 className={styles.modalTitle}>{project.title}</h2>
             <span className={styles.modalDate}>{project.date}</span>
+            {onViewDemo && (
+              <button onClick={onViewDemo} className={styles.demoBtn}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                  <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+                View Demo
+              </button>
+            )}
           </div>
           <button onClick={onClose} className={styles.closeBtn} aria-label="Close">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
